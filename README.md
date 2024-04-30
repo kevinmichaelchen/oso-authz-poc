@@ -2,6 +2,8 @@
 
 Proof-of-concept using Postgres and [Oso][oso] for authorization.
 
+## Why Oso?
+
 Oso is unlike most authorization solutions:
 
 - unlike [Zanzibar][zanzibar] because it doesn’t store all/tons of data
@@ -20,3 +22,25 @@ Basically, Oso reads your database. You tell it [how][cfg].
 [awsvp]: https://docs.aws.amazon.com/verifiedpermissions/latest/userguide/getting-started-differences-verifiedpermissions-cedar.html#differences-json-entities
 [zanzibar]: https://www.osohq.com/learn/google-zanzibar
 [distributed-authz]: https://www.osohq.com/docs/concepts/distributed-authorization
+
+## Getting Started
+
+### Run database
+
+This will restart your containers and run database migrations.
+
+```
+pkgx docker-clean stop && pkgx task run
+```
+
+### Seed data
+
+```
+PGPASSWORD=postgrespassword \
+  pkgx psql \
+    --host localhost \
+    --username postgres \
+    --port 15432 \
+    --no-password \
+    --file seed.sql
+```
