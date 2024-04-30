@@ -1,0 +1,15 @@
+version: "3"
+
+includes:
+  atlas:
+    taskfile: taskfiles/atlas.yml
+
+tasks:
+  start:
+    aliases:
+      - run
+    desc: "Spin everything up"
+    cmds:
+      - pkgx docker-clean stop || true
+      - docker compose up -d
+      - task: atlas:migrate
